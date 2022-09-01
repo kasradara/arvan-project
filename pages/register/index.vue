@@ -1,11 +1,12 @@
 <template>
   <div>
-    <a-auth type="login">
+    <a-auth type="register">
       <b-form @submit="submit">
+        <a-input v-model="form.username" input-id="username" label="Username" />
         <a-input v-model="form.email" input-id="email" type="email" label="Email" />
         <a-input v-model="form.password" input-id="password" type="password" label="Password" />
         <b-button variant="primary" class="mt-4" type="submit" block>
-          Login
+          Register
         </b-button>
       </b-form>
     </a-auth>
@@ -17,11 +18,12 @@ import AAuth from '@/components/Auth.vue'
 import AInput from '@/components/form/input.vue'
 
 export default {
-  name: 'LoginPage',
+  name: 'RegisterPage',
   components: { AAuth, AInput },
   data () {
     return {
       form: {
+        username: '',
         email: '',
         password: ''
       }
@@ -30,19 +32,10 @@ export default {
   methods: {
     submit (event) {
       event.preventDefault()
-      this.$axios.post('api/users/login', {
+      this.$axios.post('api/users', {
         user: this.form
       })
-      // this.$auth.login({ data: { user: this.form } }).catch(({ response }) => {
-      //   this.$bvToast.toast('User name and/or Password is invalid', {
-      //     title: 'Login Failed!',
-      //     variant: 'danger',
-      //     solid: true
-      //   })
-      //   this.$refs.observer.setErrors(response.data.errors)
-      // })
     }
   }
-
 }
 </script>
