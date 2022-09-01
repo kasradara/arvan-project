@@ -1,11 +1,11 @@
 <template>
   <div>
-    salam
+    <b-button>sala </b-button>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'IndexPage'
+  name: 'MainPage'
 }
 </script>
