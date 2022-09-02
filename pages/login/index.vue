@@ -2,8 +2,8 @@
   <div>
     <a-auth type="login">
       <b-form @submit="submit">
-        <a-input v-model="form.email" input-id="email" type="email" label="Email" />
-        <a-input v-model="form.password" input-id="password" type="password" label="Password" />
+        <a-input v-model="form.email" rules="required|email" input-id="email" type="email" label="Email" />
+        <a-input v-model="form.password" rules="required" input-id="password" type="password" label="Password" />
         <b-button variant="primary" class="mt-4" type="submit" block>
           Login
         </b-button>

@@ -2,9 +2,9 @@
   <div>
     <a-auth type="register">
       <b-form @submit="submit">
-        <a-input v-model="form.username" input-id="username" label="Username" />
-        <a-input v-model="form.email" input-id="email" type="email" label="Email" />
-        <a-input v-model="form.password" input-id="password" type="password" label="Password" />
+        <a-input v-model="form.username" rules="required|min:5" input-id="username" label="Username" />
+        <a-input v-model="form.email" rules="required|email" input-id="email" type="email" label="Email" />
+        <a-input v-model="form.password" rules="required|min:8" input-id="password" type="password" label="Password" />
         <b-button variant="primary" class="mt-4" type="submit" block>
           Register
         </b-button>
