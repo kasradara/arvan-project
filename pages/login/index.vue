@@ -32,6 +32,11 @@ export default {
       event.preventDefault()
       this.$axios.post('api/users/login', {
         user: this.form
+      }).then((res) => {
+        this.$cookies.set('authToken', res.data.user.token)
+        this.$axios.get('api/user').then(() => {
+          this.$router.push('/')
+        })
       })
       // this.$auth.login({ data: { user: this.form } }).catch(({ response }) => {
       //   this.$bvToast.toast('User name and/or Password is invalid', {

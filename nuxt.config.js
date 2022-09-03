@@ -25,7 +25,9 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '~/plugins/validation.js'
+    '~/plugins/validation.js',
+    '~/plugins/axios.js',
+    '~/plugins/filters/index.js'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -37,12 +39,17 @@ export default {
     '@nuxtjs/eslint-module'
   ],
 
+  router: {
+    middleware: 'auth'
+  },
+
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/bootstrap
     'bootstrap-vue/nuxt',
     // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    'cookie-universal-nuxt'
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
