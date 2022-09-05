@@ -83,6 +83,11 @@ export default {
     deleteArticle (slug) {
       this.$axios.$delete(`api/articles/${slug}`)
         .then(() => {
+          this.$bvToast.toast('Article deleted successfuly', {
+            title: 'Well done! ',
+            variant: 'success',
+            solid: true
+          })
           this.$fetch()
         })
     }
