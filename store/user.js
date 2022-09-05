@@ -11,6 +11,3 @@ export const mutations = {
     state.checkForAuth = true
   }
 }
-
-export const actions = {
-}
