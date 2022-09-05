@@ -32,6 +32,11 @@ export default {
       type: String,
       required: true
     }
+  },
+  beforeCreate () {
+    if (this.$cookies.get('authToken')) {
+      this.$router.push({ name: 'articles' })
+    }
   }
 }
 </script>
