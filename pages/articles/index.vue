@@ -40,6 +40,7 @@
           </tr>
         </table>
       </div>
+      <b-pagination-nav class="mt-4" align="center" :link-gen="changePage" :number-of-pages="pageCount" use-router />
     </div>
   </div>
 </template>
@@ -53,24 +54,40 @@ export default {
   layout: 'panel',
   data () {
     return {
-      articles: []
+      articles: [],
+      pageCount: 1
     }
   },
   async fetch () {
+    const offset = (this.$route.query?.page - 1) * 10 || 0
     const { data } = await this.$axios.get('api/articles', {
-      params: { limit: 4, offset: 3 }
+      params: { limit: 10, offset }
     })
     this.articles = data.articles
+    this.pageCount = data.articlesCount === 10
+      ? parseInt(this.$route.query?.page) + 1 || 2
+      : parseInt(this.$route.query?.page) || 1
+  },
+  watch: {
+    $route () {
+      this.$fetch()
+    }
   },
   methods: {
+    changePage (pageNum) {
+      return {
+        path: '/articles/',
+        query: { page: pageNum }
+      }
+    },
     deleteArticle (slug) {
-      this.$axios
-        .$delete(`api/articles/${slug}`)
+      this.$axios.$delete(`api/articles/${slug}`)
         .then(() => {
           this.$fetch()
         })
     }
   }
+
 }
 </script>
 <style lang="scss">
