@@ -81,14 +81,27 @@ export default {
       }
     },
     deleteArticle (slug) {
-      this.$axios.$delete(`api/articles/${slug}`)
-        .then(() => {
-          this.$bvToast.toast('Article deleted successfuly', {
-            title: 'Well done! ',
-            variant: 'success',
-            solid: true
-          })
-          this.$fetch()
+      this.$bvModal
+        .msgBoxConfirm('Are you sure to delete Article?', {
+          title: 'Delete Article',
+          okVariant: 'danger',
+          cancelVariant: 'outline-dark',
+          okTitle: 'YES',
+          cancelTitle: 'NO',
+          centered: true,
+          hideHeaderClose: false
+        }).then((deleted) => {
+          if (deleted) {
+            this.$axios.$delete(`api/articles/${slug}`)
+              .then(() => {
+                this.$bvToast.toast('Article deleted successfuly', {
+                  title: 'Well done! ',
+                  variant: 'success',
+                  solid: true
+                })
+                this.$fetch()
+              })
+          }
         })
     }
   }
