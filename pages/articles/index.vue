@@ -18,7 +18,7 @@
           </tr>
           <tr v-for="(article, index) in articles" :key="index" class="body">
             <td>{{ index+1 }}</td>
-            <td>{{ article.title }}</td>
+            <td>{{ article.title | strLimit(100) }}</td>
             <td>@{{ article.author.username }}</td>
             <td>
               <span v-for="tag in article.tagList" :key="tag" class="d-block">
