@@ -2,7 +2,7 @@
   <div class="panel-layout">
     <nav class="nav bg-dark text-light d-flex justify-content-between align-items-center py-2 px-4">
       <div>
-        <span class="title"> Arvan Challenge</span>
+        <span class="title"> Crud Challenge</span>
         <span v-if="user.username"> Welcome {{ user.username }}</span>
       </div>
       <b-button variant="outline-info" @click="logout()">
